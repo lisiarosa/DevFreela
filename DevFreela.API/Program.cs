@@ -1,4 +1,5 @@
 using DevFreela.API.Models;
+using DevFreela.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<FreelanceTotalCostConfig>( //Aqui estou vinculando a classe(model) que eu criei
     builder.Configuration.GetSection("FreelanceTotalCostConfig") //Estou parametrizando isso para conseguir acessar aquilo que criei lá no arquivo appsetings.json
     );
+
+builder.Services.AddSingleton<IConfigService, ConfigService>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
