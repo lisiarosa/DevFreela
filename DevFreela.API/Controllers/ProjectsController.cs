@@ -31,6 +31,7 @@ namespace DevFreela.API.Controllers
 
         public IActionResult GetById(int id)
         {
+            throw new Exception(); // Simula uma exceção para testar o tratamento de erros
             return Ok();
         }
 
