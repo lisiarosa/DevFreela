@@ -18,7 +18,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
+var app = builder.Build(); //Antes do Build é a parte de configurações, antes dele tem que colocar a injeção de dependências. Depois dele é a parte onde seleciona o que vai ser usado.
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
