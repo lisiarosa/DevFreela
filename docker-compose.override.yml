@@ -13,7 +13,6 @@ services:
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
   devfreeladb:
-    container_name: devfreeladb
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=SwN12345678
