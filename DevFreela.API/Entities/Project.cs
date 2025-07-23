@@ -5,6 +5,7 @@ namespace DevFreela.API.Entities
 {
     public class Project : BaseEntity // Herança da classe BaseEntity
     {
+        protected Project() { } // Construtor protegido para permitir a criação de instâncias apenas dentro do assembly ou por classes derivadas
         public Project(string title, string description, int idClient, int idFreelancer, decimal totalCost)
             : base() // Chama o construtor da classe base BaseEntity
         {
