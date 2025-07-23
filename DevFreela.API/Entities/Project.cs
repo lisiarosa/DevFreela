@@ -32,7 +32,7 @@ namespace DevFreela.API.Entities
         public List<ProjectComment> Comments { get; private set; }
         public void Cancel()
         {
-            if (Status == ProjectStatusEnum.InProgress || Status == ProjectStatusEnum.InProgress)
+            if (Status == ProjectStatusEnum.InProgress || Status == ProjectStatusEnum.Suspended)
             {
                 Status = ProjectStatusEnum.Cancelled; // Altera o status do projeto para "Cancelado"
             }
@@ -43,27 +43,33 @@ namespace DevFreela.API.Entities
             if (Status == ProjectStatusEnum.Created)
             {
                 Status = ProjectStatusEnum.InProgress; // Altera o status do projeto para "Em Andamento"
-                StartedAt = DateTime.UtcNow; // Define a data de início como a data atual
+                StartedAt = DateTime.Now; // Define a data de início como a data atual
             }
         }
 
         public void Complete()
         {
-            if (Status == ProjectStatusEnum.InProgress)
+            if (Status == ProjectStatusEnum.PaymentPending || Status == ProjectStatusEnum.InProgress)
             {
                 Status = ProjectStatusEnum.Completed; // Altera o status do projeto para "Concluído"
-                CompletedAt = DateTime.UtcNow; // Define a data de conclusão como a data atual
+                CompletedAt = DateTime.Now; // Define a data de conclusão como a data atual
             }
         }
 
         public void SetPaymentPending()
         {
-            if (Status == ProjectStatusEnum.Completed)
+            if (Status == ProjectStatusEnum.InProgress)
             {
                 Status = ProjectStatusEnum.PaymentPending; // Altera o status do projeto para "Pagamento Pendente"
             }
         }
 
+        public void Update(string title,string description, decimal totalCost)
+        {
+            Title = title; // Atualiza o título do projeto
+            Description = description; // Atualiza a descrição do projeto
+            TotalCost = totalCost; // Atualiza o custo total do projeto
+        }
 
     }
 }

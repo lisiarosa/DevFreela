@@ -5,7 +5,7 @@
     {
         protected BaseEntity() //Construtor padrão para inicializar propriedades comuns
         {
-            CreatedAt = DateTime.UtcNow; // Define a data de criação como a data atual em UTC
+            CreatedAt = DateTime.Now; // Define a data de criação como a data atual em UTC
             IsDeleted = false; // Inicializa IsDeleted como false
         }
         public int Id { get; set; }
