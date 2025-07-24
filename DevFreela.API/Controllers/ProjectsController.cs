@@ -33,10 +33,6 @@ namespace DevFreela.API.Controllers
         [HttpPost]
         public IActionResult Post(CreateProjectInputModel model)
         {
-            if(model.TotalCost < _config.Minimum || model.TotalCost > _config.Maximum)
-            {
-                return BadRequest("Número fora dos limites.");
-            }
             return CreatedAtAction(nameof(GetById), new { id = 1 }, model);
         }
 
