@@ -7,7 +7,7 @@ namespace DevFreela.API.Entities
         public Skill(string description)
             : base() // Chama o construtor da classe base BaseEntity
         {
-            Description = description;
+            Description = description; //teste
         }
         public String Description { get; private set; }
 
