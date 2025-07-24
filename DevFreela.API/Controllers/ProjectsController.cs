@@ -9,21 +9,16 @@ namespace DevFreela.API.Controllers
     [Route("api/projects")]
     public class ProjectsController : Controller
     {
-        private readonly FreelanceTotalCostConfig _config;
-        private readonly IConfigService _configService;
-        public ProjectsController(
-            IOptions<FreelanceTotalCostConfig> options,
-            IConfigService configService)
+        public ProjectsController()
         {
-            _config = options.Value;
-            _configService = configService;
+        
         }
 
         //GET api/projects?search=crm
         [HttpGet]
         public IActionResult Get(string search = "")
         {
-            return Ok(_configService.GetValue());
+            return Ok();
         }
 
         //GET api/projects/1234
@@ -31,7 +26,6 @@ namespace DevFreela.API.Controllers
 
         public IActionResult GetById(int id)
         {
-            throw new Exception(); // Simula uma exceção para testar o tratamento de erros
             return Ok();
         }
 
