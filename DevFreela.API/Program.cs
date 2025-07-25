@@ -1,6 +1,8 @@
 using DevFreela.API.ExceptionHandler;
 using DevFreela.API.Models;
+using DevFreela.API.Persistence;
 using DevFreela.API.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,9 @@ builder.Services.Configure<FreelanceTotalCostConfig>( //Aqui estou vinculando a 
     );
 
 builder.Services.AddSingleton<IConfigService, ConfigService>();
+builder.Services.AddDbContext<DevFreelaDbContext>(o => o.UseInMemoryDatabase("DevFreelaDb")); //Adicionando o contexto do banco de dados, nesse caso estou usando um banco de dados em memória, mas poderia ser um banco de dados real como SQL Server, MySQL, etc.
+
+
 builder.Services.AddExceptionHandler<ApiExceptionHandler>(); //Registrando o manipulador de exceções
 builder.Services.AddProblemDetails(); // Para caso tenha falhas, adicione detalhes no erro.
 builder.Services.AddControllers();

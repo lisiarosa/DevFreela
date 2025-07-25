@@ -10,7 +10,8 @@ namespace DevFreela.API.Entities
             Description = description; //teste
         }
         public String Description { get; private set; }
+        public List<UserSkill> UserSkills { get; private set; } // Lista de UserSkills associadas a esta Skill
 
-        
+
     }
 }
