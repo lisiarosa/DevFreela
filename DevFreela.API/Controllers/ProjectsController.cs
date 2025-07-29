@@ -2,6 +2,7 @@
 using DevFreela.API.Persistence;
 using DevFreela.API.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
 namespace DevFreela.API.Controllers
@@ -20,10 +21,14 @@ namespace DevFreela.API.Controllers
         [HttpGet]
         public IActionResult Get(string search = "")
         {
-            var projects = _context.Projects.Where(p => !p.IsDeleted).ToList();
+            var projects = _context.Projects
+                .Include(p => p.Client) // Inclui a navegação para Client
+                .Include(p => p.Freelancer) // Inclui a navegação para Freelancer
+                .Where(p => !p.IsDeleted).ToList();
 
-            var model = projects.Select(p=> new ProjectItemViewModel())
-            return Ok();
+            var model = projects.Select(ProjectItemViewModel.FromEntity).ToList();
+
+            return Ok(projects);
         }
 
         //GET api/projects/1234
@@ -46,6 +51,7 @@ namespace DevFreela.API.Controllers
 
         public IActionResult Put(int id, UpdateProjectInputModel model)
         {
+
             return NoContent();
         }
 
