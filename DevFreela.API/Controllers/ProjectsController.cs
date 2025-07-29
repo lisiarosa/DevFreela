@@ -20,6 +20,9 @@ namespace DevFreela.API.Controllers
         [HttpGet]
         public IActionResult Get(string search = "")
         {
+            var projects = _context.Projects.Where(p => !p.IsDeleted).ToList();
+
+            var model = projects.Select(p=> new ProjectItemViewModel())
             return Ok();
         }
 
