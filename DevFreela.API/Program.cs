@@ -27,6 +27,8 @@ var app = builder.Build(); //Antes do Build é a parte de configurações, antes de
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
+
+
 {
     app.UseSwagger();
     app.UseSwaggerUI();
