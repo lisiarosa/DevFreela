@@ -1,4 +1,5 @@
-﻿using DevFreela.API.Models;
+﻿using DevFreela.API.Entities;
+using DevFreela.API.Models;
 using DevFreela.API.Persistence;
 using DevFreela.API.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -88,6 +89,11 @@ namespace DevFreela.API.Controllers
             {
                 return NotFound();
             }
+
+            project.SetAsDeleted();
+            _context.Projects.Update(project);
+            _context.SaveChanges();
+
             return NoContent();
         }
 
@@ -119,6 +125,10 @@ namespace DevFreela.API.Controllers
             {
                 return NotFound();
             }
+
+            project.Complete();
+            _context.Projects.Update(project);
+            _context.SaveChanges();
             return NoContent();
         }
 
@@ -132,6 +142,11 @@ namespace DevFreela.API.Controllers
             {
                 return NotFound();
             }
+
+            var comment = new ProjectComment(model.Content, model.IdProject, model.IdUser);
+            _context.ProjectComments.Add(comment);
+            _context.SaveChanges();
+
             return CreatedAtAction(nameof(GetById), new { id = 1 }, model );
         }
     }
